@@ -4,10 +4,14 @@ import base64
 import argparse
 from label import *
 
+from dotenv import dotenv_values
+
+env_vars = dotenv_values('.env')
+
 def get_caption(reference):
 
     # API_URL = "https://api-inference.huggingface.co/models/nlpconnect/vit-gpt2-image-captioning"
-    # headers = {"Authorization": f"Bearer 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"}
+    # headers = {"Authorization": "Bearer %s" % env_vars['HFTOKEN']}
     # with open(reference, "rb") as f:
     #     data = base64.b64encode(f.read()).decode("utf-8")
     # body = {"image":data}
@@ -27,7 +31,7 @@ def make_class_names(caption):
 
 def inference(subject, classes):
     API_URL = "https://api-inference.huggingface.co/models/openai/clip-vit-large-patch14"
-    headers = {"Authorization": "Bearer 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"}
+    headers = {"Authorization": "Bearer %s" % env_vars['HFTOKEN']}
     classlist = ",".join(classes[:2])
     with open(subject, "rb") as f:
         data = base64.b64encode(f.read()).decode("utf-8")
