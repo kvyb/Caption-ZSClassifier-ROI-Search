@@ -1,0 +1,8 @@
+reference-image/*
+subject-image/*
+__pycache__
+bin
+include
+lib
+*.zip
+pyvenv.cfg
